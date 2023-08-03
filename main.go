@@ -37,7 +37,7 @@ func main() {
 	fmt.Println("links: ", len(links))
 
 	// 5. check all links
-	ch := make(chan int, 16)
+	ch := make(chan int, 12)
 	for _, link := range links {
 		ch <- 1
 		go func(link utils.Link) {
@@ -53,7 +53,4 @@ func main() {
 			<-ch
 		}(link)
 	}
-
-	// 6. generate report
-	utils.GenerateReport()
 }

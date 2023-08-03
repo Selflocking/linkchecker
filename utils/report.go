@@ -6,28 +6,30 @@ import (
 	"time"
 )
 
-var Report = []string{"GIthubLink, URL, Message"}
+var logFile *os.File
 
-// AddToReport add a bad link to report
-func AddToReport(l Link, msg string) {
-	Report = append(Report, fmt.Sprintf("'%s', '%s', '%s'", l.GetGithubLink(), l.Url, msg))
-}
-
-// GenerateReport write report to csv file
-func GenerateReport() {
-	filename := "report-" + time.Now().Format("2006-01-02-15-04-05") + ".csv"
-	file, err := os.Create(filename)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	defer file.Close()
-
-	for _, line := range Report {
-		_, err := fmt.Fprintln(file, line)
+func init() {
+	if logFile == nil {
+		var err error
+		filename := "report-" + time.Now().Format("2006-01-02-15-04-05") + ".csv"
+		logFile, err = os.Create(filename)
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
+		_, err = fmt.Fprintln(logFile, "GItHubLink, URL, Message")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+	}
+}
+
+// AddToReport add a bad link to report
+func AddToReport(l Link, msg string) {
+	_, err := fmt.Fprintln(logFile, fmt.Sprintf("'%s', '%s', '%s'", l.GetGithubLink(), l.Url, msg))
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
 }
