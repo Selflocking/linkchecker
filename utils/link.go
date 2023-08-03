@@ -10,23 +10,24 @@ import (
 	"regexp"
 )
 
-type Link struct {
-	Url     string
+type Location struct {
 	Org     string
 	Repo    string
 	RelPath string
 	Line    int
 }
 
-func (l Link) GetGithubLink() string {
+func (l Location) GetGithubLink() string {
 	return fmt.Sprintf("https://github.com/%s/%s/blob/master/%s#L%d", l.Org, l.Repo, l.RelPath, l.Line)
 }
 
-func (l Link) GetFIlePath() string {
+func (l Location) GetFIlePath() string {
 	return filepath.Join(l.Org, l.Repo, l.RelPath)
 }
 
-const linkPattern = "https?://(?:[a-zA-Z0-9\\-]+\\.?)+[^\\s>)\\]\"'`$]*"
+var LinksToCheck = make(map[string][]Location)
+
+const linkPattern = "https?://(?:[a-zA-Z0-9\\-]+\\.?)+[^\\s<>%)\\]\"'`$]*"
 
 func ParseLink(text string) []string {
 	re := regexp.MustCompile(linkPattern)
@@ -34,7 +35,7 @@ func ParseLink(text string) []string {
 	return re.FindAllString(text, -1)
 }
 
-func ExtractLinksFromFile(f File) []Link {
+func ExtractLinksFromFile(f File) {
 	file, err := os.Open(f.FilePath)
 
 	if err != nil {
@@ -46,7 +47,6 @@ func ExtractLinksFromFile(f File) []Link {
 	//buf := make([]byte, 0, 64*1024)
 	//scanner.Buffer(buf, 1024*1024)
 
-	var res []Link
 	lineCount := 0
 	for scanner.Scan() {
 		lineCount++
@@ -65,13 +65,13 @@ func ExtractLinksFromFile(f File) []Link {
 				continue
 			}
 
-			res = append(res, Link{
-				Url:     l,
+			LinksToCheck[l] = append(LinksToCheck[l], Location{
 				Org:     f.Org,
 				Repo:    f.Repo,
 				RelPath: f.RelPath,
 				Line:    lineCount,
 			})
+
 		}
 	}
 
@@ -80,5 +80,4 @@ func ExtractLinksFromFile(f File) []Link {
 		log.Printf("error: %v", err)
 	}
 
-	return res
 }

@@ -26,10 +26,12 @@ func init() {
 }
 
 // AddToReport add a bad link to report
-func AddToReport(l Link, msg string) {
-	_, err := fmt.Fprintln(logFile, fmt.Sprintf("'%s', '%s', '%s'", l.GetGithubLink(), l.Url, msg))
-	if err != nil {
-		fmt.Println(err)
-		return
+func AddToReport(url string, loc []Location, msg string) {
+	for _, l := range loc {
+		_, err := fmt.Fprintln(logFile, fmt.Sprintf("%s, %s, \"%s\"", l.GetGithubLink(), url, msg))
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
 }
