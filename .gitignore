@@ -29,3 +29,6 @@ workspace/
 
 # reports
 report*.csv
+
+# build
+linkchecker

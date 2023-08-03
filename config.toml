@@ -70,6 +70,12 @@ IgnoreURLPatterns = [
     # need login
     "https://twitter.com",
     "https://www.linkedin.com",
+    "https://open-dev.dingtalk.com",
+
+    # api
+    "https?://api", # such as https://api.github.com
+    "https?://[\\w.]*/api/", # such as https://gitee.com/api/v5/
+
 
     # doc site
     "https?://your-casdoor-url.com",
@@ -83,9 +89,34 @@ IgnoreURLPatterns = [
     "https://www.thinkphp.cn/",
     "http://yourip",
     "http://your-ip",
+    "http://APISIX_HOSTNAME",
+    "http://BACKEND_HOSTNAME",
+    "http://JENKINS_HOSTNAME",
+    "https://REDIRECT_URI",
+    "http://CASDOOR_HOSTNAME", # also https://github.com/casdoor/casdoor-spring-boot-shiro-example
+    "http://your_endpoint", # casbin-website-v2
+
+    # https://github.com/casdoor/casdoor
+    "https://cloud.example.org",
+    "https://xxx",
+
+    # https://github.com/casdoor/casdoor-dotnet-sdk
+    # https://github.com/casbin-net/casbin-aspnetcore
+    # https://github.com/casdoor/casdoor
+    "https?://example.com",
+
+    # https://github.com/casdoor/traefik-casdoor-auth
+    "http://webhook.domain.local",
+
+    # https://github.com/casdoor/wordpress-casdoor-plugin
+    "http://your-wordpress-domain",
 
     # https://github.com/casbin/casbin-mesh
     "http://node",
+
+    # https://github.com/node-casbin
+    "https?://admin",
+
 
     # https://github.com/casbin/hraft-dispatcher
     "https://testing",
@@ -95,5 +126,6 @@ IgnoreURLPatterns = [
     "https://kubernetes.docker.internal",
 
     # casbin/casbin-mp
-    "https?://192.168"
+    "https?://192.168",
+    "https://door.example.in",
 ]
