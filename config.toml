@@ -18,7 +18,7 @@ IgnoreRepos = [
     "casbin/caswaf.github.io",
     "casdoor/casdoor.github.io",
     "casnode/casnode.github.io",
-    "casbin-website",
+    "casbin/casbin-website",
     "casbin/static",
     "casbin/openstack-patron",
 ]
@@ -56,10 +56,12 @@ FileTypes = [
     ".json"
 ]
 IgnoreFilePatterns = [
-    ".min." # such as swagger-ui.min.js and swagger-ui.min.css
+    ".min.", # such as swagger-ui.min.js and swagger-ui.min.css
+    "test"
 ]
 IgnoreDirPatterns = [
-    "swagger"
+    "swagger",
+    "test"
 ]
 IgnoreURLPatterns = [
     "https?://localhost",
@@ -68,6 +70,19 @@ IgnoreURLPatterns = [
     # need login
     "https://twitter.com",
     "https://www.linkedin.com",
+
+    # doc site
+    "https?://your-casdoor-url.com",
+    "https?://[a-z]*.?your-site-url.com",
+    "https://flarum.org/",
+    "https://dash.cloudflare.com/",
+    "https://developer.android.com",
+    "https://developer.twitter.com",
+    "https://www.epis2048.net",
+    "https://codeigniter.com/",
+    "https://www.thinkphp.cn/",
+    "http://yourip",
+    "http://your-ip",
 
     # https://github.com/casbin/casbin-mesh
     "http://node",
