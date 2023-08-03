@@ -1,0 +1,84 @@
+Orgs = [
+    "casbin",
+    "casdoor",
+    "casnode",
+    "casbin-cpp",
+    "casbin-js",
+    "casbin-net",
+    "casbin-rs",
+    "casbin4d",
+    "jcasbin",
+    "node-casbin",
+    "pycasbin",
+    "casbin-lua"
+]
+IgnoreRepos = [
+    "casbin/casbin.io",
+    "casbin/casibase.github.io",
+    "casbin/caswaf.github.io",
+    "casdoor/casdoor.github.io",
+    "casnode/casnode.github.io",
+    "casbin-website",
+    "casbin/static",
+    "casbin/openstack-patron",
+]
+FileTypes = [
+    ".md",
+    ".mdx",
+    ".js",
+    ".css",
+    ".scss",
+    ".less",
+    ".sass",
+    ".jsx",
+    ".tsx",
+    ".vue",
+    ".go",
+    ".ts",
+    ".cpp",
+    ".h",
+    ".hpp",
+    ".cs",
+    ".rs",
+    ".java",
+    ".py",
+    ".lua",
+    ".rb",
+    ".php",
+    ".c",
+    ".swift",
+    ".kt",
+    ".scala",
+    ".dart",
+    ".sh",
+    ".yml",
+    ".yaml",
+    ".json"
+]
+IgnoreFilePatterns = [
+    ".min." # such as swagger-ui.min.js and swagger-ui.min.css
+]
+IgnoreDirPatterns = [
+    "swagger"
+]
+IgnoreURLPatterns = [
+    "https?://localhost",
+    "https?://127.0.0.1",
+    "https?://0.0.0.0",
+    # need login
+    "https://twitter.com",
+    "https://www.linkedin.com",
+
+    # https://github.com/casbin/casbin-mesh
+    "http://node",
+
+    # https://github.com/casbin/hraft-dispatcher
+    "https://testing",
+
+    # https://github.com/casbin/k8s-gatekeeper
+    "https://webhook.domain.local",
+    "https://kubernetes.docker.internal",
+
+    # casbin/casbin-mp
+    "https?://192.168"
+]
