@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/gofri/go-github-ratelimit v1.0.4
 	github.com/google/go-github/v53 v53.2.0
+	github.com/schollz/progressbar/v3 v3.13.1
 	github.com/spf13/viper v1.16.0
 	github.com/stretchr/testify v1.8.3
 	golang.org/x/oauth2 v0.10.0
@@ -25,7 +26,6 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-	github.com/schollz/progressbar/v3 v3.13.1 // indirect
 	github.com/spf13/afero v1.9.5 // indirect
 	github.com/spf13/cast v1.5.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect

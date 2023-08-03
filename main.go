@@ -52,7 +52,7 @@ func main() {
 	for url, loc := range utils.LinksToCheck {
 		ch <- 1
 		go func(u string, l []utils.Location) {
-			ok, msg := utils.CheckLink(u, time.Second*10)
+			ok, msg := utils.CheckLink(u, time.Second*20)
 			if !ok {
 				utils.AddToReport(u, l, msg)
 			}
