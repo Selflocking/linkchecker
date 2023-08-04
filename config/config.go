@@ -33,12 +33,14 @@ func init() {
 	viper.SetConfigType("toml")
 	viper.AddConfigPath(".")
 
-	if viper.ReadInConfig() != nil {
-		err := viper.SafeWriteConfig()
-		if err != nil {
-			panic(err)
-		}
-	}
+	_ = viper.ReadInConfig()
+
+	//if viper.ReadInConfig() != nil {
+	//	err := viper.SafeWriteConfig()
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//}
 
 	viper.SetEnvPrefix("LINKCHECKER")
 	viper.AutomaticEnv()

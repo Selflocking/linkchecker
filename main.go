@@ -6,10 +6,12 @@ import (
 	"github.com/schollz/progressbar/v3"
 	"linkchecker/config"
 	"linkchecker/utils"
+	"os"
+	"os/signal"
 	"time"
 )
 
-func main() {
+func CheckAllRepos() {
 	// 1. range orgs, get all repos
 	var repos []*github.Repository
 	for _, org := range config.Orgs {
@@ -60,4 +62,18 @@ func main() {
 			<-ch
 		}(url, loc)
 	}
+}
+
+func main() {
+	go func() {
+		c := make(chan os.Signal)
+		signal.Notify(c, os.Interrupt)
+		<-c
+		utils.WriteReports("markdown")
+		os.Exit(0)
+	}()
+
+	CheckAllRepos()
+
+	utils.WriteReports("markdown")
 }
