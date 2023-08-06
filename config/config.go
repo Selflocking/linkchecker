@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"github.com/spf13/viper"
 )
 
@@ -16,11 +17,13 @@ var (
 
 var (
 	GitHubToken = ""
-	Workspace   = "workspace"
+	Author      = ""
+	Workspace   = ""
 )
 
 func init() {
 	viper.SetDefault("GitHubToken", "")
+	viper.SetDefault("Author", "")
 	viper.SetDefault("Workspace", "workspace")
 	viper.SetDefault("Orgs", []string{})
 	viper.SetDefault("IgnoreRepos", []string{})
@@ -56,6 +59,15 @@ func init() {
 	if Workspace == "" {
 		panic("please provide a valid workspace path")
 	}
+
+	Author = viper.GetString("Author")
+
+	if Author == "" {
+		panic("please provide your github username")
+	}
+
+	fmt.Println("Author: ", Author)
+	fmt.Println("Workspace: ", Workspace)
 
 	Orgs = viper.GetStringSlice("Orgs")
 	IgnoreRepos = viper.GetStringSlice("IgnoreRepos")

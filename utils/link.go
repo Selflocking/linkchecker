@@ -27,7 +27,7 @@ func (l Location) GetFIlePath() string {
 
 var LinksToCheck = make(map[string][]Location)
 
-const linkPattern = "https?://(?:[a-zA-Z0-9\\-]+\\.?)+[^\\s<>)\\]\"'`$]*"
+const linkPattern = "https?://(?:[a-zA-Z0-9\\-]+\\.?)+[^\\s,<>)\\]\"'`$]*"
 
 func ParseLink(text string) []string {
 	re := regexp.MustCompile(linkPattern)

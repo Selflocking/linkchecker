@@ -8,6 +8,7 @@ import (
 	"golang.org/x/oauth2"
 	"linkchecker/config"
 	"log"
+	"strings"
 )
 
 var GitHubClient *github.Client
@@ -62,4 +63,36 @@ func GetAllRepos(org string) (repos []*github.Repository) {
 	}
 
 	return repos
+}
+
+func ForkRepo(owner string, repoName string, author string) {
+	_, resp, _ := GitHubClient.Repositories.Get(context.Background(), author, repoName)
+	if resp.StatusCode == 200 {
+		return
+	}
+
+	_, _, _ = GitHubClient.Repositories.CreateFork(context.Background(), owner,
+		repoName, &github.RepositoryCreateForkOptions{})
+}
+
+func OpenPR(owner string, repoName string, user string, branch string, prTitle string,
+	prContent string) {
+	_, _, err := GitHubClient.PullRequests.Create(context.Background(), owner,
+		repoName,
+		&github.NewPullRequest{
+			Title:               github.String(prTitle),
+			Head:                github.String(user + ":" + branch),
+			Base:                github.String("master"),
+			Body:                github.String(prContent),
+			MaintainerCanModify: github.Bool(true),
+		})
+	if err != nil {
+		fmt.Printf("create PR failed: %s/%s\n,%v\n", owner, repoName, err)
+		return
+	}
+}
+
+func ParseName(repo string) (owner string, repoName string) {
+	s := strings.Split(repo, "/")
+	return s[0], s[1]
 }

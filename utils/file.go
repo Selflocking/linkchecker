@@ -5,7 +5,6 @@ import (
 	"linkchecker/config"
 	"log"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -16,34 +15,6 @@ type File struct {
 	Org      string
 	Repo     string
 	RelPath  string
-}
-
-func Clone(repo *github.Repository) error {
-	if _, err := os.Stat(filepath.Join(config.Workspace, *repo.Owner.Login, *repo.Name)); err == nil {
-		return nil
-		//cmd := exec.Command("git", "pull")
-		//cmd.Dir = filepath.Join(config.Workspace, *repo.Owner.Login, *repo.Name)
-		//err = cmd.Run()
-		//return err
-	}
-
-	if _, err := os.Stat(filepath.Join(config.Workspace, *repo.Owner.Login)); os.IsNotExist(err) {
-		err = os.MkdirAll(filepath.Join(config.Workspace, *repo.Owner.Login), os.ModePerm)
-		if err != nil {
-			return err
-		}
-	}
-
-	cmd := exec.Command("git", "clone", *repo.CloneURL, "--depth=1")
-	cmd.Dir = filepath.Join(config.Workspace, *repo.Owner.Login)
-	err := cmd.Run()
-
-	if err != nil {
-		log.Fatalf("clone failed: %s/%s\n", *repo.Owner.Login, *repo.Name)
-		return err
-	}
-
-	return nil
 }
 
 func GetFilesList(repo *github.Repository) (files []File) {

@@ -13,14 +13,22 @@ Orgs = [
     "casbin-lua"
 ]
 IgnoreRepos = [
+    "casbin/casbin.github.io",
     "casbin/casbin.io",
     "casbin/casibase.github.io",
     "casbin/caswaf.github.io",
     "casdoor/casdoor.github.io",
     "casnode/casnode.github.io",
-    "casbin/casbin-website",
     "casbin/static",
     "casbin/openstack-patron",
+    # abandoned
+    "casbin/casbin-website",
+    "casbin-lua/apisix-authz",
+    "casbin/Summer2021",
+    "casbin/Summer2022",
+    "casbin/Summer2023",
+    "casbin/SummerOfCode2023",
+    "jcasbin/jfinal-demo",
 ]
 FileTypes = [
     ".md",
@@ -57,13 +65,21 @@ FileTypes = [
 ]
 IgnoreFilePatterns = [
     ".min.", # such as swagger-ui.min.js and swagger-ui.min.css
-    "test"
+    "test",
+    "package-lock.json"
 ]
 IgnoreDirPatterns = [
     "swagger",
-    "test"
+    "test",
+    "static/js", # such as https://github.com/casbin/casbin-website-v2/tree/master/static/js
+    "wwwroot/lib", # https://github.com/casdoor/casdoor-dotnet-sdk-example/tree/master/MvcApp/wwwroot/lib
 ]
 IgnoreURLPatterns = [
+    # temporarily disabled
+    "https://www.opensource.org",
+    "https://crates.io",
+    "https://mvnrepository.com",
+
     "https?://localhost",
     "https?://127.0.0.1",
     "https?://0.0.0.0",
@@ -71,11 +87,19 @@ IgnoreURLPatterns = [
     "https://twitter.com",
     "https://www.linkedin.com",
     "https://open-dev.dingtalk.com",
+    "https://nuget.pkg.github.com", # such as https://nuget.pkg.github.com/casbin-net/index.json
+    "https://developer.gitter.im/",
+    "http://qy.baidu.com/index.html#applist",
+    "http://id.qy.baidu.com/static/ge/login.html#/",
+    "https://my.visualstudio.com",
 
     # api
     "https?://api", # such as https://api.github.com
     "https?://[\\w.]*/api/", # such as https://gitee.com/api/v5/
-
+    "https://translation.googleapis.com",
+    "https://groups.google.com/g/",
+    "https://github.com/login/oauth",
+    "http://chenweihao.vip:8081/callback", # casdoor/casdoor-android-sdk-old
 
     # doc site
     "https?://your-casdoor-url.com",
@@ -95,6 +119,17 @@ IgnoreURLPatterns = [
     "https://REDIRECT_URI",
     "http://CASDOOR_HOSTNAME", # also https://github.com/casdoor/casdoor-spring-boot-shiro-example
     "http://your_endpoint", # casbin-website-v2
+    "https://github.com/[\\w\\d/-]*/edit/", # such as https://github.com/casbin/caswaf-website/edit/master/${blogDirPath}/${blogPath}
+    "https://attachment.discuz.net/forum/", # casnode/casnode-website
+    "http://test.casbin.com", # casdoor/odoo-casdoor-oauth
+    "http://YOUR_DOMAIN_NAME",
+    "https://cdn.casbin.com/",
+    "http://FRONTEND_HOSTNAME",
+    "https://oauth-openshift.apps.",
+    "http://schemas.microsoft.com",
+    "https://www.google.com/a/",
+    "http://schemas.android.com",
+    "http://GITLAB_HOSTNAME",
 
     # https://github.com/casdoor/casdoor
     "https://cloud.example.org",
@@ -117,7 +152,6 @@ IgnoreURLPatterns = [
     # https://github.com/node-casbin
     "https?://admin",
 
-
     # https://github.com/casbin/hraft-dispatcher
     "https://testing",
 
@@ -128,4 +162,25 @@ IgnoreURLPatterns = [
     # casbin/casbin-mp
     "https?://192.168",
     "https://door.example.in",
+
+    # casbin-cpp/nginx-casbin-module
+    "http://ip:port",
+
+    # casbin/session-role-manager
+    "https://en.wikipedia.org/wiki/Session_(computer_science",
+
+    # node-casbin/etcd-watcher
+    "https://github.com/coreos/etcd/releases/download/",
+
+    # pycasbin/flask-authz
+    "https://github.com/pycasbin/flask-authz/tarball/v",
+
+    # casdoor/casdoor-java-sdk
+    "http://forum.casbin.org?code=xxx&state=yyyy",
+
+    # casbin/casbin.js
+    "http://Domain_name/casbin/api",
+
+    # casbin/auth0-role-manager
+    "https://abc.us.webtask.io",
 ]
