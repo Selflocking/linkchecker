@@ -100,6 +100,7 @@ IgnoreURLPatterns = [
     "https://groups.google.com/g/",
     "https://github.com/login/oauth",
     "http://chenweihao.vip:8081/callback", # casdoor/casdoor-android-sdk-old
+    "https://door.casdoor.com/cas/casbin/cas-java-app/samlValidate",
 
     # doc site
     "https?://your-casdoor-url.com",
