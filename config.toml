@@ -168,7 +168,7 @@ IgnoreURLPatterns = [
     "http://ip:port",
 
     # casbin/session-role-manager
-    "https://en.wikipedia.org/wiki/Session_(computer_science",
+    "https://en.wikipedia.org/wiki/Session_\\(computer_science",
 
     # node-casbin/etcd-watcher
     "https://github.com/coreos/etcd/releases/download/",
@@ -184,4 +184,7 @@ IgnoreURLPatterns = [
 
     # casbin/auth0-role-manager
     "https://abc.us.webtask.io",
+
+    # opencollective
+    "https://opencollective.com/casbin/sponsor/"
 ]

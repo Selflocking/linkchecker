@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+
 	"github.com/spf13/viper"
 )
 
@@ -19,12 +20,14 @@ var (
 	GitHubToken = ""
 	Author      = ""
 	Workspace   = ""
+	UA          = ""
 )
 
 func init() {
 	viper.SetDefault("GitHubToken", "")
 	viper.SetDefault("Author", "")
 	viper.SetDefault("Workspace", "workspace")
+	viper.SetDefault("UA", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203")
 	viper.SetDefault("Orgs", []string{})
 	viper.SetDefault("IgnoreRepos", []string{})
 	viper.SetDefault("FileTypes", []string{})
@@ -38,12 +41,12 @@ func init() {
 
 	_ = viper.ReadInConfig()
 
-	//if viper.ReadInConfig() != nil {
+	// if viper.ReadInConfig() != nil {
 	//	err := viper.SafeWriteConfig()
 	//	if err != nil {
 	//		panic(err)
 	//	}
-	//}
+	// }
 
 	viper.SetEnvPrefix("LINKCHECKER")
 	viper.AutomaticEnv()
@@ -65,9 +68,11 @@ func init() {
 	if Author == "" {
 		panic("please provide your github username")
 	}
+	UA = viper.GetString("UA")
 
 	fmt.Println("Author: ", Author)
 	fmt.Println("Workspace: ", Workspace)
+	fmt.Println("UA: ", UA)
 
 	Orgs = viper.GetStringSlice("Orgs")
 	IgnoreRepos = viper.GetStringSlice("IgnoreRepos")

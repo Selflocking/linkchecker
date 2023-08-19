@@ -3,12 +3,14 @@ package utils
 import (
 	"context"
 	"fmt"
+	"log"
+	"strings"
+	"time"
+
 	"github.com/gofri/go-github-ratelimit/github_ratelimit"
 	"github.com/google/go-github/v53/github"
 	"golang.org/x/oauth2"
 	"linkchecker/config"
-	"log"
-	"strings"
 )
 
 var GitHubClient *github.Client
@@ -95,4 +97,12 @@ func OpenPR(owner string, repoName string, user string, branch string, prTitle s
 func ParseName(repo string) (owner string, repoName string) {
 	s := strings.Split(repo, "/")
 	return s[0], s[1]
+}
+
+func IsUpdated(repo *github.Repository) bool {
+	// check if updated in a week
+	if repo.UpdatedAt.After(time.Now().AddDate(0, 0, -7)) {
+		return true
+	}
+	return false
 }
