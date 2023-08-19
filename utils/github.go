@@ -9,6 +9,7 @@ import (
 
 	"github.com/gofri/go-github-ratelimit/github_ratelimit"
 	"github.com/google/go-github/v53/github"
+	"github.com/sirupsen/logrus"
 	"golang.org/x/oauth2"
 	"linkchecker/config"
 )
@@ -89,7 +90,7 @@ func OpenPR(owner string, repoName string, user string, branch string, prTitle s
 			MaintainerCanModify: github.Bool(true),
 		})
 	if err != nil {
-		fmt.Printf("create PR failed: %s/%s\n,%v\n", owner, repoName, err)
+		logrus.Error("create PR failed: %s/%s\n,%v\n", owner, repoName, err)
 		return
 	}
 }

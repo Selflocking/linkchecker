@@ -1,8 +1,7 @@
 package config
 
 import (
-	"fmt"
-
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
@@ -70,9 +69,9 @@ func init() {
 	}
 	UA = viper.GetString("UA")
 
-	fmt.Println("Author: ", Author)
-	fmt.Println("Workspace: ", Workspace)
-	fmt.Println("UA: ", UA)
+	logrus.Info("Author: ", Author)
+	logrus.Info("Workspace: ", Workspace)
+	logrus.Info("UA: ", UA)
 
 	Orgs = viper.GetStringSlice("Orgs")
 	IgnoreRepos = viper.GetStringSlice("IgnoreRepos")

@@ -19,20 +19,20 @@ func CheckAllRepos() {
 	for _, org := range config.Orgs {
 		repos = append(repos, utils.GetAllRepos(org)...)
 	}
-	fmt.Println("repos: ", len(repos))
+	logrus.Info("repos: ", len(repos))
 
 	// 2. clone all repos
 	for _, repo := range repos {
 		utils.Clone(*repo.Name, filepath.Join(config.Workspace, *repo.Owner.Login), *repo.CloneURL)
 	}
-	fmt.Println("clone done")
+	logrus.Info("clone done")
 
 	// 3. get all allowed type files
 	var files []utils.File
 	for _, repo := range repos {
 		files = append(files, utils.GetFilesList(repo)...)
 	}
-	fmt.Println("files: ", len(files))
+	logrus.Info("files: ", len(files))
 
 	// 4. extract all links from files line by line
 	for _, file := range files {
@@ -40,7 +40,7 @@ func CheckAllRepos() {
 	}
 
 	linksNum := len(utils.LinksToCheck)
-	fmt.Println("links: ", linksNum)
+	logrus.Info("links: ", linksNum)
 	counter := 0
 
 	// 5. check all links
@@ -74,7 +74,7 @@ func ModifyAndOpenPR() {
 	var input string
 	_, err := fmt.Scanln(&input)
 	if err != nil {
-		fmt.Println(err)
+		logrus.Error(err)
 		return
 	}
 	if input != "y" {
@@ -96,7 +96,7 @@ func ModifyAndOpenPR() {
 				var input string
 				_, err := fmt.Scanln(&input)
 				if err != nil {
-					fmt.Println(err)
+					logrus.Error(err)
 					continue
 				}
 				if input == "y" {
@@ -115,7 +115,7 @@ func ModifyAndOpenPR() {
 		var input string
 		_, err := fmt.Scanln(&input)
 		if err != nil {
-			fmt.Println(err)
+			logrus.Error(err)
 			return
 		}
 		if input == "y" {
@@ -151,20 +151,20 @@ func CheckReposUpdatedWithinWeek() {
 			updatedRepos = append(updatedRepos, repo)
 		}
 	}
-	fmt.Println("repos: ", len(updatedRepos))
+	logrus.Info("repos: ", len(updatedRepos))
 
 	// 2. clone all repos
 	for _, repo := range updatedRepos {
 		utils.Clone(*repo.Name, filepath.Join(config.Workspace, *repo.Owner.Login), *repo.CloneURL)
 	}
-	fmt.Println("clone done")
+	logrus.Info("clone done")
 
 	// 3. get all allowed type files
 	var files []utils.File
 	for _, repo := range updatedRepos {
 		files = append(files, utils.GetFilesList(repo)...)
 	}
-	fmt.Println("files: ", len(files))
+	logrus.Info("files: ", len(files))
 
 	// 4. extract all links from files line by line
 	for _, file := range files {
@@ -172,31 +172,19 @@ func CheckReposUpdatedWithinWeek() {
 	}
 
 	linksNum := len(utils.LinksToCheck)
-	fmt.Println("links: ", linksNum)
+	logrus.Info("links: ", linksNum)
 	counter := 0
 
 	// 5. check all links
-	ch := make(chan int, 12)
-	defer close(ch)
-	wg := sync.WaitGroup{}
 	for url, loc := range utils.LinksToCheck {
 		counter++
 		logger := logrus.WithField("Rate", fmt.Sprintf("%d/%d", counter, linksNum))
-		ch <- 1
-		wg.Add(1)
-		go func(u string, l []utils.Location) {
-			defer wg.Done()
-
-			ok, msg := utils.CheckLink(u, time.Second*20)
-			if !ok {
-				utils.AddToReport(u, l, msg)
-			}
-			logger.Info("Checking: ", u)
-			<-ch
-		}(url, loc)
+		ok, msg := utils.CheckLink(url, time.Second*20)
+		if !ok {
+			utils.AddToReport(url, loc, msg)
+		}
+		logger.Info("Checking: ", url)
 	}
-
-	wg.Wait()
 
 	utils.WriteReports("markdown")
 }
@@ -206,11 +194,11 @@ func main() {
 	flag.Parse()
 
 	if *onlyCheckReoposWithinWeek {
-		fmt.Println("only check repos updated within a week")
+		logrus.Info("only check repos updated within a week")
 		CheckReposUpdatedWithinWeek()
 		return
 	}
-	fmt.Println("check all repos and fix broken links")
+	logrus.Info("check all repos and fix broken links")
 	CheckAllRepos()
 	ModifyAndOpenPR()
 }

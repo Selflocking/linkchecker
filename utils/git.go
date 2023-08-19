@@ -1,25 +1,26 @@
 package utils
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
+
+	"github.com/sirupsen/logrus"
 )
 
 func Clone(repoName string, p string, cloneUrl string) {
 	if _, err := os.Stat(filepath.Join(p, repoName)); err == nil {
 		return
-		//cmd := exec.Command("git", "pull")
-		//cmd.Dir = filepath.Join(p, repoName)
-		//err = cmd.Run()
-		//return err
+		// cmd := exec.Command("git", "pull")
+		// cmd.Dir = filepath.Join(p, repoName)
+		// err = cmd.Run()
+		// return err
 	}
 
 	if _, err := os.Stat(p); os.IsNotExist(err) {
 		err = os.MkdirAll(p, os.ModePerm)
 		if err != nil {
-			fmt.Println(err)
+			logrus.Error(err)
 			return
 		}
 	}
@@ -29,7 +30,7 @@ func Clone(repoName string, p string, cloneUrl string) {
 	err := cmd.Run()
 
 	if err != nil {
-		fmt.Printf("clone failed: %s\n", repoName)
+		logrus.Error("clone failed:", repoName)
 		return
 	}
 
@@ -45,8 +46,8 @@ func AddRemote(p string, author string, repoName string) {
 		cmd.Dir = p
 		output, err := cmd.Output()
 		if err != nil {
-			fmt.Println("In "+p+":", err)
-			fmt.Println(string(output))
+			logrus.Error("In "+p+":", err)
+			logrus.Error(string(output))
 			return
 		}
 	}
@@ -57,8 +58,8 @@ func AddRemote(p string, author string, repoName string) {
 		cmd.Dir = p
 		output, err := cmd.Output()
 		if err != nil {
-			fmt.Println("In "+p+":", err)
-			fmt.Println(string(output))
+			logrus.Error("In "+p+":", err)
+			logrus.Error(string(output))
 			return
 		}
 	}
@@ -69,8 +70,8 @@ func CommitAndPush(p string, branch string, msg string, remote string) bool {
 	checkout.Dir = p
 	output, err := checkout.Output()
 	if err != nil {
-		fmt.Println("In "+p+":", err)
-		fmt.Println(string(output))
+		logrus.Error("In "+p+":", err)
+		logrus.Error(string(output))
 		return false
 	}
 
@@ -78,8 +79,8 @@ func CommitAndPush(p string, branch string, msg string, remote string) bool {
 	add.Dir = p
 	output, err = add.Output()
 	if err != nil {
-		fmt.Println("In "+p+":", err)
-		fmt.Println(string(output))
+		logrus.Error("In "+p+":", err)
+		logrus.Error(string(output))
 		return false
 	}
 
@@ -87,8 +88,8 @@ func CommitAndPush(p string, branch string, msg string, remote string) bool {
 	commit.Dir = p
 	output, err = commit.Output()
 	if err != nil {
-		fmt.Println("In "+p+":", err)
-		fmt.Println(string(output))
+		logrus.Error("In "+p+":", err)
+		logrus.Error(string(output))
 		return false
 	}
 
@@ -96,8 +97,8 @@ func CommitAndPush(p string, branch string, msg string, remote string) bool {
 	push.Dir = p
 	output, err = push.Output()
 	if err != nil {
-		fmt.Println("In "+p+":", err)
-		fmt.Println(string(output))
+		logrus.Error("In "+p+":", err)
+		logrus.Error(string(output))
 		return false
 	}
 
@@ -105,8 +106,8 @@ func CommitAndPush(p string, branch string, msg string, remote string) bool {
 	back.Dir = p
 	output, err = back.Output()
 	if err != nil {
-		fmt.Println("In "+p+":", err)
-		fmt.Println(string(output))
+		logrus.Error("In "+p+":", err)
+		logrus.Error(string(output))
 		return false
 	}
 	return true
@@ -116,7 +117,7 @@ func OpenRepo(p string) {
 	cmd := exec.Command("code", p)
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println(err)
+		logrus.Error(err)
 		return
 	}
 }

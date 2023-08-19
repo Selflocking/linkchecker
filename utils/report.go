@@ -5,6 +5,8 @@ import (
 	"os"
 	"sync"
 	"time"
+
+	"github.com/sirupsen/logrus"
 )
 
 type Result struct {
@@ -49,7 +51,7 @@ func WriteReports(t string) {
 	case "markdown":
 		WriteReportsToMD()
 	default:
-		fmt.Println("unknown report type")
+		logrus.Error("unknown report type")
 	}
 }
 
@@ -58,14 +60,14 @@ func WriteReportsToCSV() {
 
 	file, err := os.Create(filename)
 	if err != nil {
-		fmt.Println("failed to create file: ", err)
+		logrus.Error("failed to create file: ", err)
 		return
 	}
 	defer file.Close()
 
 	_, err = fmt.Fprintln(file, "Repo, URL, Path, Message")
 	if err != nil {
-		fmt.Println("failed to write: ", err)
+		logrus.Error("failed to write: ", err)
 		return
 	}
 
@@ -75,13 +77,13 @@ func WriteReportsToCSV() {
 		for _, r := range results {
 			_, err := fmt.Fprintf(file, "%s, %s, %s#%d, %s\n", repo, r.Url, r.RelPath, r.Line, r.msg)
 			if err != nil {
-				fmt.Println("failed to write: ", err)
+				logrus.Error("failed to write: ", err)
 				return false
 			}
 		}
 		_, err := fmt.Fprintf(file, "\n")
 		if err != nil {
-			fmt.Println("failed to write: ", err)
+			logrus.Error("failed to write: ", err)
 			return false
 		}
 		return true
@@ -93,14 +95,14 @@ func WriteReportsToMD() {
 
 	file, err := os.Create(filename)
 	if err != nil {
-		fmt.Println("failed to create file: ", err)
+		logrus.Error("failed to create file: ", err)
 		return
 	}
 	defer file.Close()
 
 	_, err = fmt.Fprintf(file, "# Report\n\n")
 	if err != nil {
-		fmt.Println("failed to write: ", err)
+		logrus.Error("failed to write: ", err)
 		return
 	}
 
@@ -110,7 +112,7 @@ func WriteReportsToMD() {
 
 		_, err := fmt.Fprintf(file, "## "+repo+"\n\n")
 		if err != nil {
-			fmt.Println("failed to write: ", err)
+			logrus.Error("failed to write: ", err)
 			return false
 		}
 
@@ -119,7 +121,7 @@ func WriteReportsToMD() {
 				"URL: `%s`\nPath: %s#%d\nMessage: %s\n\n",
 				r.Url, r.RelPath, r.Line, r.msg)
 			if err != nil {
-				fmt.Println("failed to write: ", err)
+				logrus.Error("failed to write: ", err)
 				return false
 			}
 		}
