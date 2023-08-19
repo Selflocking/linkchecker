@@ -6,8 +6,12 @@ on:
     - cron: "0 12 * * 6" # runs every saturday at 12:00 UTC
 
 jobs:
+  weekly-check:
+    env:
+      LINKCHECKER_GITHUBTOKEN: ${{ secrets.LINKCHECKER_GITHUBTOKEN }}
+      LINKCHECKER_AUTHOR: ${{ secrets.LINKCHECKER_AUTHOR }}
+      LINKCHECKER_WORKSPACE: ${{ secrets.LINKCHECKER_WORKSPACE }}
 
-  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
