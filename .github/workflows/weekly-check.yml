@@ -9,8 +9,8 @@ jobs:
   weekly-check:
     env:
       LINKCHECKER_GITHUBTOKEN: ${{ secrets.LINKCHECKER_GITHUBTOKEN }}
-      LINKCHECKER_AUTHOR: ${{ secrets.LINKCHECKER_AUTHOR }}
-      LINKCHECKER_WORKSPACE: ${{ secrets.LINKCHECKER_WORKSPACE }}
+      LINKCHECKER_AUTHOR: "Selflocking"
+      LINKCHECKER_WORKSPACE: "/tmp/workspace"
 
     runs-on: ubuntu-latest
     steps:
