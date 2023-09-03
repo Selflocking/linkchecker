@@ -19,6 +19,8 @@ IgnoreRepos = [
     "casbin/caswaf.github.io",
     "casdoor/casdoor.github.io",
     "casnode/casnode.github.io",
+    "casbin/casvisor.github.io",
+    "casbin/caswire.github.io",
     "casbin/static",
     "casbin/openstack-patron",
     # abandoned
@@ -92,6 +94,7 @@ IgnoreURLPatterns = [
     "http://qy.baidu.com/index.html#applist",
     "http://id.qy.baidu.com/static/ge/login.html#/",
     "https://my.visualstudio.com",
+    "https://www.amazon.com/ap/oa", # casdoor/casdoor
 
     # api
     "https?://api", # such as https://api.github.com
@@ -101,6 +104,42 @@ IgnoreURLPatterns = [
     "https://github.com/login/oauth",
     "http://chenweihao.vip:8081/callback", # casdoor/casdoor-android-sdk-old
     "https://door.casdoor.com/cas/casbin/cas-java-app/samlValidate",
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify", # casdoor/casdoor
+    "https://www.linkedIn.com/oauth/v2/accessToken", # casdoor/casdoor
+    "http://afs.aliyuncs.com", # casdoor/casdoor
+    "https://graph.facebook.com", # casdoor/casdoor
+    "https://typetalk.com/oauth2/authorize", # casdoor/casdoor
+    "http://auth0.com/authorize", # casdoor/casdoor
+    "https://login.eveonline.com/oauth/authorize", # casdoor/casdoor
+    "https://gitlab.com/oauth/token", # casdoor/casdoor
+    "https://connect.stripe.com/oauth/authorize", # casdoor/casdoor
+    "https://gitee.com/oauth/token", # casdoor/casdoor
+    "https://www.patreon.com/oauth2/authorize", # casdoor/casdoor
+    "https://www.gravatar.com/avatar/", # casdoor/casdoor
+    "https://www.googleapis.com", # casdoor/casdoor
+    "https://github.com/casdoor/casdoor/releases/tag/", # casdoor/casdoor
+    "https://cloud.digitalocean.com/v1/oauth/authorize", # casdoor/casdoor
+    "https://github.com/organizations/xxx/settings/applications/1234567", # casdoor/casdoor
+    "https://www.strava.com/oauth/authorize", # casdoor/casdoor
+    "https://myshopify.com/admin/oauth/authorize", # casdoor/casdoor
+    "https://app.intercom.com/oauth", # casdoor/casdoor
+    "https://www.dropbox.com/oauth2/authorize", # casdoor/casdoor
+    "https://openapi.baidu.com/oauth/2.0/token", # casdoor/casdoor
+    "https://login.cloudfoundry.org/oauth/authorize", # casdoor/casdoor
+    "https://himg.bdimg.com/sys/portrait/item", # casdoor/casdoor
+    "https://access.line.me/oauth2", # casdoor/casdoor
+    "https://www.tumblr.com/oauth2", # casdoor/casdoor
+    "https://open.feishu.cn/open-apis", # casdoor/casdoor
+    "https://oauth.vk.com/authorize", # casdoor/casdoor
+    "https://accounts.google.com/o/oauth2/token", # casdoor/casdoor
+    "https://login.uber.com/oauth/v2/authorize", # casdoor/casdoor
+    "https://open.feishu.cn/open-apis/authen/v1/access_token", # casdoor/casdoor
+    "http://specs.openid.net/auth", # casdoor/casdoor
+    "https://gitlab.com/oauth/authorize", # casdoor/casdoor
+    "https://login.salesforce.com/services/oauth2/authorize", # casdoor/casdoor
+    "https://id.twitch.tv/oauth2/authorize", # casdoor/casdoor
+    "https://oauth.battlenet.com.cn/authorize", # casdoor/casdoor
+    "https://www.facebook.com/dialog/oauth", # casdoor/casdoor
 
     # doc site
     "https?://your-casdoor-url.com",
@@ -186,5 +225,30 @@ IgnoreURLPatterns = [
     "https://abc.us.webtask.io",
 
     # opencollective
-    "https://opencollective.com/casbin/sponsor/"
+    "https://opencollective.com/casbin/sponsor/",
+
+    # demo site
+    "https://demo.ai.casbin.com/",
+    "https://demo.caswaf.com",
+
+    # xmlns
+    "http://www.yale.edu/tp/cas", # casdoor/casdoor
+
+    # rpc url
+    "https://mainnet.infura.io", # casdoor/casdoor
+    "https://goerli.infura.io", # casdoor/casdoor
+    "https://matic-mumbai.chainstacklabs.com", # casdoor/casdoor
+    "https://bsc-dataseed.binance.org/", # casdoor/casdoor
+    "https://mainnet.optimism.io", # casdoor/casdoor
+    "https://rpc.ankr.com/arbitrum", # casdoor/casdoor
+
+    # unknown usage
+    "https://error:", # casdoor/casdoor
+    "https://pay.com/pay.php", # casdoor/casdoor
+
+    # response example or code explanation
+    "https://media.licdn.cn/dms/image/C5603AQHbdR8RkG62yg/profile-displayphoto-shrink_100_100/0/1625279434135?e=1630540800&v=beta&t=Z-bQKf_jFv8L1uwr6X5AJLoTQRWZrueT7qrITDSvxWM", # casdoor/casdoor
+    "http://tp1.sinaimg.cn/1404376560/50/0/1", # casdoor/casdoor
+    "http://i0.hdslb.com/bfs/face/e1c99895a9f9df4f260a70dc7e227bcb46cf319c.jpg", # casdoor/casdoor
+    "https://duo.com/logo.png", # casdoor/casdoor
 ]

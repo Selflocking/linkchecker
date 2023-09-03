@@ -26,7 +26,7 @@ func init() {
 	viper.SetDefault("GitHubToken", "")
 	viper.SetDefault("Author", "")
 	viper.SetDefault("Workspace", "workspace")
-	viper.SetDefault("UA", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203")
+	viper.SetDefault("UA", "")
 	viper.SetDefault("Orgs", []string{})
 	viper.SetDefault("IgnoreRepos", []string{})
 	viper.SetDefault("FileTypes", []string{})

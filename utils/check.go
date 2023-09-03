@@ -17,13 +17,16 @@ func CheckLink(url string, timeout time.Duration) (bool, string) {
 	if err != nil {
 		return false, err.Error()
 	}
-	req.Header.Set("User-Agent", config.UA)
-	req.Header.Set("Accept", "*/*")
+	if config.UA != "" {
+		req.Header.Set("User-Agent", config.UA)
+	}
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return false, err.Error()
 	}
+	defer resp.Body.Close()
+
 	if resp.StatusCode != 200 {
 		return false, fmt.Sprintf("status code: %d", resp.StatusCode)
 	}

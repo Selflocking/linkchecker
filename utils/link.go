@@ -3,11 +3,12 @@ package utils
 import (
 	"bufio"
 	"fmt"
-	"linkchecker/config"
 	"log"
 	"os"
 	"path/filepath"
 	"regexp"
+
+	"linkchecker/config"
 )
 
 type Location struct {
@@ -44,8 +45,8 @@ func ExtractLinksFromFile(f File) {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	//buf := make([]byte, 0, 64*1024)
-	//scanner.Buffer(buf, 1024*1024)
+	// buf := make([]byte, 0, 64*1024)
+	// scanner.Buffer(buf, 1024*1024)
 
 	lineCount := 0
 	for scanner.Scan() {
