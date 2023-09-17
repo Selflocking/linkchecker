@@ -31,6 +31,7 @@ IgnoreRepos = [
     "casbin/Summer2023",
     "casbin/SummerOfCode2023",
     "jcasbin/jfinal-demo",
+    "casbin/casdoor", # duplicated with casdoor/casdoor
 ]
 FileTypes = [
     ".md",
@@ -75,6 +76,7 @@ IgnoreDirPatterns = [
     "test",
     "static/js", # such as https://github.com/casbin/casbin-website-v2/tree/master/static/js
     "wwwroot/lib", # https://github.com/casdoor/casdoor-dotnet-sdk-example/tree/master/MvcApp/wwwroot/lib
+    "samples",
 ]
 IgnoreURLPatterns = [
     # temporarily disabled
@@ -95,6 +97,7 @@ IgnoreURLPatterns = [
     "http://id.qy.baidu.com/static/ge/login.html#/",
     "https://my.visualstudio.com",
     "https://www.amazon.com/ap/oa", # casdoor/casdoor
+    "https://usercenter.console.aliyun.com", # casdoor/go-sms-sender
 
     # api
     "https?://api", # such as https://api.github.com
@@ -229,6 +232,7 @@ IgnoreURLPatterns = [
 
     # demo site
     "https://demo.ai.casbin.com/",
+    "https://demo-ai.casbin.com",
     "https://demo.caswaf.com",
 
     # xmlns
@@ -252,3 +256,4 @@ IgnoreURLPatterns = [
     "http://i0.hdslb.com/bfs/face/e1c99895a9f9df4f260a70dc7e227bcb46cf319c.jpg", # casdoor/casdoor
     "https://duo.com/logo.png", # casdoor/casdoor
 ]
+#UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.76"
