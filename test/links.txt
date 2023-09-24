@@ -1,0 +1,11 @@
+https://abc.com
+https://abc.com d
+https://abc.com<d
+https://abc.com>d
+https://abc.com)d
+https://abc.com]d
+https://abc.com\d
+https://abc.com"d
+https://abc.com'd
+https://abc.com`d
+https://abc.com$d
