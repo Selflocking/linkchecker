@@ -59,7 +59,7 @@ func CheckAllRepos() {
 			if !ok {
 				utils.AddToReport(u, l, msg)
 			}
-			logger.Info("Checking: ", u)
+			logger.Info("Checking: ", u, " ")
 			<-ch
 		}(url, loc)
 	}
@@ -183,7 +183,7 @@ func CheckReposUpdatedWithinWeek() {
 		if !ok {
 			utils.AddToReport(url, loc, msg)
 		}
-		logger.Info("Checking: ", url)
+		logger.Info("Checking: ", url, " ")
 	}
 
 	utils.WriteReports("markdown")
