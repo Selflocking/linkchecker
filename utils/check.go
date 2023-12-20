@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"linkchecker/config"
+	"github.com/work4dev/linkchecker/config"
 )
 
 // CheckLink Checks if the link is valid.

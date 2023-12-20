@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"linkchecker/config"
+	"github.com/work4dev/linkchecker/config"
 )
 
 type Location struct {

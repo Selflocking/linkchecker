@@ -1,4 +1,4 @@
-module linkchecker
+module github.com/work4dev/linkchecker
 
 go 1.20
 

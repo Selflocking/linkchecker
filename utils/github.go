@@ -10,8 +10,8 @@ import (
 	"github.com/gofri/go-github-ratelimit/github_ratelimit"
 	"github.com/google/go-github/v53/github"
 	"github.com/sirupsen/logrus"
+	"github.com/work4dev/linkchecker/config"
 	"golang.org/x/oauth2"
-	"linkchecker/config"
 )
 
 var GitHubClient *github.Client

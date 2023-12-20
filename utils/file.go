@@ -1,13 +1,14 @@
 package utils
 
 import (
-	"github.com/google/go-github/v53/github"
-	"linkchecker/config"
 	"log"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/google/go-github/v53/github"
+	"github.com/work4dev/linkchecker/config"
 )
 
 type File struct {

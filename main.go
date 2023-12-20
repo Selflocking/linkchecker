@@ -9,8 +9,8 @@ import (
 
 	"github.com/google/go-github/v53/github"
 	"github.com/sirupsen/logrus"
-	"linkchecker/config"
-	"linkchecker/utils"
+	"github.com/work4dev/linkchecker/config"
+	"github.com/work4dev/linkchecker/utils"
 )
 
 func CheckAllRepos() {
