@@ -36,7 +36,7 @@ func CheckAllRepos() {
 
 	// 4. extract all links from files line by line
 	for _, file := range files {
-		utils.ExtractLinksFromFile(file)
+		utils.ExtractLinksFromComments(file)
 	}
 
 	linksNum := len(utils.LinksToCheck)
@@ -168,7 +168,7 @@ func CheckReposUpdatedWithinWeek() {
 
 	// 4. extract all links from files line by line
 	for _, file := range files {
-		utils.ExtractLinksFromFile(file)
+		utils.ExtractLinksFromComments(file)
 	}
 
 	linksNum := len(utils.LinksToCheck)

@@ -1,11 +1,12 @@
 package test
 
 import (
-	"github.com/stretchr/testify/assert"
-	"linkchecker/utils"
 	"log"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/work4dev/linkchecker/utils"
 )
 
 func TestCheckLink(t *testing.T) {

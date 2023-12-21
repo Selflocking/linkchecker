@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"regexp"
 
+	"github.com/work4dev/linkchecker/comment"
 	"github.com/work4dev/linkchecker/config"
 )
 
@@ -37,6 +38,55 @@ func ParseLink(text string) []string {
 	return re.FindAllString(text, -1)
 }
 
+func ignoreLink(link string) bool {
+	for _, pattern := range config.IgnoreURLPatterns {
+		r := regexp.MustCompile(pattern)
+		if r.MatchString(link) {
+			return true
+		}
+	}
+	return false
+}
+
+func linkFilter(links []string) []string {
+	var res []string
+	for _, l := range links {
+		if ignoreLink(l) {
+			continue
+		}
+		res = append(res, l)
+	}
+	return res
+}
+
+func appendLinkToCheck(link []string, loc Location) {
+	for _, l := range link {
+		LinksToCheck[l] = append(LinksToCheck[l], loc)
+	}
+}
+
+func ExtractLinksFromComments(f File) {
+	ext := GetFileExt(f)
+	parser := comment.ParserFactory(ext)
+	if parser == nil {
+		ExtractLinksFromFile(f)
+		return
+	}
+
+	text := GetFileContent(f)
+	comments := parser.GetComments(text)
+	for _, c := range comments {
+		links := ParseLink(c)
+		links = linkFilter(links)
+		appendLinkToCheck(links, Location{
+			Org:     f.Org,
+			Repo:    f.Repo,
+			RelPath: f.RelPath,
+			Line:    -1,
+		})
+	}
+}
+
 func ExtractLinksFromFile(f File) {
 	file, err := os.Open(f.FilePath)
 
@@ -46,40 +96,22 @@ func ExtractLinksFromFile(f File) {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	// buf := make([]byte, 0, 64*1024)
-	// scanner.Buffer(buf, 1024*1024)
 
 	lineCount := 0
 	for scanner.Scan() {
 		lineCount++
 		links := ParseLink(scanner.Text())
-		for _, l := range links {
-			skip := false
-			for _, pattern := range config.IgnoreURLPatterns {
-				r := regexp.MustCompile(pattern)
-				if r.MatchString(l) {
-					skip = true
-					break
-				}
-			}
-
-			if skip {
-				continue
-			}
-
-			LinksToCheck[l] = append(LinksToCheck[l], Location{
-				Org:     f.Org,
-				Repo:    f.Repo,
-				RelPath: f.RelPath,
-				Line:    lineCount,
-			})
-
-		}
+		links = linkFilter(links)
+		appendLinkToCheck(links, Location{
+			Org:     f.Org,
+			Repo:    f.Repo,
+			RelPath: f.RelPath,
+			Line:    lineCount,
+		})
 	}
 
 	if err := scanner.Err(); err != nil {
 		log.Println("failed to scan file", f.FilePath)
 		log.Printf("error: %v", err)
 	}
-
 }

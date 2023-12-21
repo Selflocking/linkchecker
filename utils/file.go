@@ -66,3 +66,17 @@ func GetFilesList(repo *github.Repository) (files []File) {
 	})
 	return files
 }
+
+func GetFileContent(f File) string {
+	content, err := os.ReadFile(f.FilePath)
+	if err != nil {
+		log.Println("failed to read file", f.FilePath)
+		log.Println(err)
+		return ""
+	}
+	return string(content)
+}
+
+func GetFileExt(f File) string {
+	return filepath.Ext(f.FilePath)
+}
