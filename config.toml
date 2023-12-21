@@ -69,7 +69,8 @@ FileTypes = [
 IgnoreFilePatterns = [
     ".min.", # such as swagger-ui.min.js and swagger-ui.min.css
     "test",
-    "package-lock.json"
+    "package-lock.json",
+    "conf.go" # https://github.com/casbin/casnode/blob/master/discuzx/conf.go#L19
 ]
 IgnoreDirPatterns = [
     "swagger",
@@ -143,6 +144,9 @@ IgnoreURLPatterns = [
     "https://id.twitch.tv/oauth2/authorize", # casdoor/casdoor
     "https://oauth.battlenet.com.cn/authorize", # casdoor/casdoor
     "https://www.facebook.com/dialog/oauth", # casdoor/casdoor
+    "https://bitbucket.org/site/oauth2/authorize", # casdoor/casdoor
+    "https?://openapi.baidu.com/oauth/2.0/authorize", # casdoor/casdoor
+    "https://secure.meetup.com/oauth2/authorize", # casdoor/casdoor
 
     # doc site
     "https?://your-casdoor-url.com",
@@ -177,6 +181,7 @@ IgnoreURLPatterns = [
     # https://github.com/casdoor/casdoor
     "https://cloud.example.org",
     "https://xxx",
+    "https://media.licdn.cn/dms/image/",
 
     # https://github.com/casdoor/casdoor-dotnet-sdk
     # https://github.com/casbin-net/casbin-aspnetcore
@@ -256,4 +261,4 @@ IgnoreURLPatterns = [
     "http://i0.hdslb.com/bfs/face/e1c99895a9f9df4f260a70dc7e227bcb46cf319c.jpg", # casdoor/casdoor
     "https://duo.com/logo.png", # casdoor/casdoor
 ]
-#UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.76"
+UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.76"

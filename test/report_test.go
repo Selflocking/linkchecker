@@ -1,8 +1,9 @@
 package test
 
 import (
-	"linkchecker/utils"
 	"testing"
+
+	"github.com/work4dev/linkchecker/utils"
 )
 
 var Urls = []string{

@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	"linkchecker/utils"
+	"github.com/work4dev/linkchecker/utils"
 )
 
 func TestParseLinks(t *testing.T) {
@@ -13,7 +13,7 @@ func TestParseLinks(t *testing.T) {
 		Repo:     "test",
 		RelPath:  "links.txt",
 	}
-	utils.ExtractLinksFromFile(file)
+	utils.ExtractLinksFromComments(file)
 	for url, loc := range utils.LinksToCheck {
 		t.Logf("result: %s", url)
 		if url != "https://abc.com" {
